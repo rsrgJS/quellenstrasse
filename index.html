@@ -112,7 +112,12 @@
 
 	// wrap map.locate in a function    
     function locate() {
-      map.locate({setView: false, maxZoom: 16});
+		if (theMarker != undefined) {
+			map.locate({setView: false, maxZoom: 16});
+		}else{
+			map.locate({setView: true, maxZoom: 16});
+		};
+		
     }
 
     // call locate every 3 seconds... forever
