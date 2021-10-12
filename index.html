@@ -89,9 +89,7 @@
 		var radius = e.accuracy / 2;
 		
 		<!-- if already postion marked remove current marker-->
-		if (theMarker != undefined) {
-        	map.removeLayer(theMarker);
-		};
+		map.removeLayer(theMarker);
 		
 		<!-- add user position marker-->
 		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
