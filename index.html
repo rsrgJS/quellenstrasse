@@ -90,6 +90,7 @@
 		
 		<!-- if already postion marked remove current marker-->
 		map.removeLayer(theMarker);
+		theMarker.clearLayers();
 		
 		<!-- add user position marker-->
 		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
