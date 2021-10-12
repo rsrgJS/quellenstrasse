@@ -47,6 +47,13 @@
     iconAnchor: [17, 35],
     popupAnchor: [1, -18],
 	});
+	<!-- marker icon symbol-->
+	var urlicon = L.icon({
+    iconUrl: 'green.png',
+    iconSize: [24, 40],
+    iconAnchor: [12, 40],
+    popupAnchor: [0, -40],
+	});
 	
 	<!--background map -->
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -59,7 +66,11 @@
 		zoomOffset: -1
 	}).addTo(map);
 	
-			
+	var myStyle = {
+		"color": "#ff7800",
+		"weight": 5,
+		"opacity": 0.65
+	};	
 	<!-- add individual markers-->
 	<!-- L.marker([48.17651365432451, 16.360024422044273]).addTo(map) -->
 		<!-- .bindPopup("Marker ID: 1").openPopup(); -->
@@ -72,14 +83,30 @@
 		layer.bindPopup("<b>" + feature.properties.name + "</b><br>" + feature.properties.height + " m");
 	}
 
-	<!-- GeoJSON -->
+	<!-- GPS points in GeoJSON Format -->
 	var myGeoJSON = {"type": "FeatureCollection", "features": [
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [16.36099646, 48.17654488]}, "id": "41d18844-207e-4cc4-ab01-6541b459b6dd", "properties": {"name": "P2", "height": "1.56"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [16.3618185, 48.17638883]}, "id": "58ea7902-8004-4ee7-9647-f7af87697ba9", "properties": {"name": "P3", "height": "1.11"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [16.36466264, 48.1762848]}, "id": "60dd0417-3e3e-4b3f-b901-fe51919dccd3", "properties": {"name": "P96", "height": "2.24"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [16.36007841, 48.17650086]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P1", "height": "1.43"}}]}
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.711070661, 47.551815101]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P001","height": "9,986"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710947691, 47.552189586]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P002","height": "9,993"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710849629, 47.552199706]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P003","height": "9,956"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710090113, 47.552277651]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P004","height": "9,987"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709240428, 47.552343839]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P005","height": "9,920"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709283839, 47.552333909]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P006","height": "9,900"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.708603472, 47.552366276]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P007","height": "9,883"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707922956, 47.552340302]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P008","height": "9,864"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707923161, 47.552339837]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P009","height": "9,865"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707736150, 47.552282266]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P010","height": "9,866"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707249546, 47.552313428]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P011","height": "9,897"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.706902031, 47.552247005]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P012","height": "9,874"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.706288772, 47.552056843]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P013","height": "9,893"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.705491930, 47.552224106]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P014","height": "9,903"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707301945, 47.551909900]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P015","height": "9,917"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.708335698, 47.551760038]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P016","height": "9,796"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709676336, 47.551653491]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P017","height": "9,928"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.711901875, 47.551759230]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P018","height": "9,935"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.712359974, 47.551991636]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P019","height": "9,925"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709392456, 47.552069048]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P020","height": "9,939"}}]}
 	
-	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature}).addTo(map)
+	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature, pointToLayer: function(feature,latlng){ return L.marker(latlng,{icon: urlicon});}    }).addTo(map)
 
 	<!-- marker variable to hold the user position-->
 	var theMarker = {};
