@@ -82,7 +82,7 @@
 	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature}).addTo(map)
 
 	<!-- marker variable to hold the user position-->
-	var theMarker = {};
+	var theMarker = L.layerGroup();
 	
 	<!-- if location found-->
 	function onLocationFound(e) {
@@ -93,7 +93,8 @@
 		theMarker.clearLayers();
 		
 		<!-- add user position marker-->
-		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
+		theMarker.addLayer(new L.circleMarker(e.latlng, 20));
+		map.addLayer(theMarker);
 <!--			.bindPopup("You are within " + radius + " meters from this point").openPopup();-->
 
 		<!-- add user postion accuracy buffer-->
