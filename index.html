@@ -22,6 +22,14 @@
 			width: 600px;
 			height: 400px;
 		}
+		#refreshButton {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			padding: 10px;
+			z-index: 400;
+		}
+
 	</style>
 
 	<style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
@@ -29,8 +37,16 @@
 <body>
 
 <div id='map'></div>
+<button id='refreshButton' onclick="myFunction()">Refresh Button</button>
 
 <script>
+	<!-- Button Click Event-->
+	function myFunction() {
+		// first initialization
+		map.locate({setView: true, maxZoom: 16});
+	}
+	
+	<!-- Map fittet to the screen-->
 	var map = L.map('map').fitWorld();
 	
 	<!-- marker icon symbol-->
@@ -52,7 +68,7 @@
     iconUrl: 'green.png',
     iconSize: [24, 40],
     iconAnchor: [12, 40],
-    popupAnchor: [0, -40],
+    popupAnchor: [0, -39],
 	});
 	
 	<!--background map -->
