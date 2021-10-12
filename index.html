@@ -89,9 +89,10 @@
 		var radius = e.accuracy / 2;
 		
 		<!-- if already postion marked remove current marker-->
-		map.removeLayer(theMarker);
-		theMarker.clearLayers();
-		
+		 if (map.hasLayer(mark)){
+			map.removeLayer(theMarker);
+			theMarker.clearLayers();
+		}
 		<!-- add user position marker-->
 		theMarker.addLayer(new L.circleMarker(e.latlng, 20));
 		map.addLayer(theMarker);
@@ -115,7 +116,7 @@
 			map.locate({setView: false, maxZoom: 16});
 		}else{
 			map.locate({setView: false, maxZoom: 16});
-		};	
+		}
     }
 
     // call locate every 3 seconds... forever
