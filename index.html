@@ -43,7 +43,8 @@
 	<!-- Button Click Event-->
 	function myFunction() {
 		// first initialization
-		map.locate({setView: true, maxZoom: 16});
+		map.locate({setView: true, maxZoom: 18});
+		map.setZoom(15)
 	}
 	
 	<!-- Map fittet to the screen-->
@@ -129,7 +130,6 @@
 	
 	<!-- if location found-->
 	function onLocationFound(e) {
-		var radius = e.accuracy / 2;
 		
 		<!-- if already postion marked remove current marker-->
 		if (theMarker != undefined) {
@@ -138,11 +138,6 @@
 		
 		<!-- add user position marker-->
 		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
-<!--			.bindPopup("You are within " + radius + " meters from this point").openPopup();-->
-
-		<!-- add user postion accuracy buffer-->
-		<!-- L.circle(e.latlng, radius).addTo(map);-->
-
 	}
 
 	<!-- if no location found-->
@@ -155,11 +150,11 @@
 
 	// wrap map.locate in a function    
     function locate() {
-		map.locate({setView: false, maxZoom: 16});
+		map.locate();
     }
 	
 	// first initialization
-	map.locate({setView: true, maxZoom: 16});	
+	myFunction()	
     // call locate every 3 seconds... forever
     setInterval(locate, 3000);
 	
