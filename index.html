@@ -90,8 +90,8 @@
 		
 		<!-- if already postion marked remove current marker-->
 		if (theMarker != undefined) {
-              		map.removeLayer(theMarker);
-        	};
+        	map.removeLayer(theMarker);
+		};
 		
 		<!-- add user position marker-->
 		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
@@ -99,7 +99,6 @@
 
 		<!-- add user postion accuracy buffer-->
 		<!-- L.circle(e.latlng, radius).addTo(map);-->
-
 	}
 
 	<!-- if no location found-->
@@ -116,16 +115,11 @@
 			map.locate({setView: true, maxZoom: 16});
 		}else{
 			map.locate({setView: false, maxZoom: 16});
-		};
-		
+		};	
     }
 
     // call locate every 3 seconds... forever
     setInterval(locate, 3000);
-	
 </script>
-
-
-
 </body>
 </html>
