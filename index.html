@@ -61,10 +61,10 @@
 	
 			
 	<!-- add individual markers-->
-	L.marker([48.17651365432451, 16.360024422044273]).addTo(map)
-		.bindPopup("Marker ID: 1").openPopup();
-	L.marker([48.17642512312112, 16.362770710635175]).addTo(map)
-		.bindPopup("Marker ID: 2").openPopup();
+	<!-- L.marker([48.17651365432451, 16.360024422044273]).addTo(map) -->
+		<!-- .bindPopup("Marker ID: 1").openPopup(); -->
+	<!-- L.marker([48.17642512312112, 16.362770710635175]).addTo(map) -->
+		<!-- .bindPopup("Marker ID: 2").openPopup(); -->
 		
 	
 	<!-- function to show meta data of geoJSON data-->
@@ -94,7 +94,7 @@
         	};
 		
 		<!-- add user position marker-->
-		theMarker = L.circleMarker(e.latlng, 10).addTo(map);
+		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
 <!--			.bindPopup("You are within " + radius + " meters from this point").openPopup();-->
 
 		<!-- add user postion accuracy buffer-->
