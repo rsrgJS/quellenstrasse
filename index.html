@@ -102,7 +102,13 @@
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
 
-	map.locate({setView: true, maxZoom: 16});
+	// wrap map.locate in a function    
+    function locate() {
+      map.locate({setView: true, maxZoom: 16});
+    }
+
+    // call locate every 3 seconds... forever
+    setInterval(locate, 3000);
 	
 </script>
 
