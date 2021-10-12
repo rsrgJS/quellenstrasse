@@ -110,7 +110,7 @@
 	// wrap map.locate in a function    
     function locate() {
 		if (theMarker = {}) {
-			map.locate({setView: true, maxZoom: 16});
+			map.locate({setView: false, maxZoom: 16});
 		}else{
 			map.locate({setView: false, maxZoom: 16});
 		};	
