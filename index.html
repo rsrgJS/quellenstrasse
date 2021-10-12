@@ -82,24 +82,24 @@
 	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature}).addTo(map)
 
 	<!-- marker variable to hold the user position-->
-	var theMarker = L.layerGroup();
+	var theMarker = {};
 	
 	<!-- if location found-->
 	function onLocationFound(e) {
 		var radius = e.accuracy / 2;
 		
 		<!-- if already postion marked remove current marker-->
-		 if (map.hasLayer(theMarker)){
-			map.removeLayer(theMarker);
-			theMarker.clearLayers();
-		}
+		if (theMarker != undefined) {
+              		map.removeLayer(theMarker);
+        	};
+		
 		<!-- add user position marker-->
-		theMarker.addLayer(new L.circleMarker(e.latlng, 20));
-		map.addLayer(theMarker);
+		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
 <!--			.bindPopup("You are within " + radius + " meters from this point").openPopup();-->
 
 		<!-- add user postion accuracy buffer-->
 		<!-- L.circle(e.latlng, radius).addTo(map);-->
+
 	}
 
 	<!-- if no location found-->
@@ -112,15 +112,20 @@
 
 	// wrap map.locate in a function    
     function locate() {
-		if (theMarker = {}) {
+		if (theMarker != undefined) {
 			map.locate({setView: false, maxZoom: 16});
 		}else{
-			map.locate({setView: false, maxZoom: 16});
-		}
+			map.locate({setView: true, maxZoom: 16});
+		};
+		
     }
 
     // call locate every 3 seconds... forever
     setInterval(locate, 3000);
+	
 </script>
+
+
+
 </body>
 </html>
