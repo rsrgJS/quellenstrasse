@@ -94,7 +94,7 @@
         	};
 		
 		<!-- add user position marker-->
-		theMarker = L.marker(e.latlng).addTo(map);
+		theMarker = L.circle(e.latlng, 10).addTo(map);
 <!--			.bindPopup("You are within " + radius + " meters from this point").openPopup();-->
 
 		<!-- add user postion accuracy buffer-->
