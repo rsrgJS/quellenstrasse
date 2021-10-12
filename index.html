@@ -130,12 +130,10 @@
 	
 	<!-- if location found-->
 	function onLocationFound(e) {
-		
 		<!-- if already postion marked remove current marker-->
 		if (theMarker != undefined) {
               		map.removeLayer(theMarker);
         	};
-		
 		<!-- add user position marker-->
 		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
 	}
@@ -152,9 +150,7 @@
     function locate() {
 		map.locate();
     }
-	
-	// first initialization
-	myFunction()	
+		
     // call locate every 3 seconds... forever
     setInterval(locate, 3000);
 	
