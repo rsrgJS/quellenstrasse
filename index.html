@@ -8,7 +8,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -43,69 +43,44 @@
 <button id='refreshButton' onclick="getLocation()">Karte zentrieren</button>
 
 <script>
+<!-- FUNCTIONS -->
 	<!-- Button Click Event-->
 	function getLocation() {
 		// first initialization
 		map.locate({setView: true, maxZoom: 18, setZoom: 13});
 	}
 	
-	<!-- Map fittet to the screen-->
-	var map = L.map('map', { "tap": false }).fitWorld();
-	
-	<!-- marker icon symbol-->
-	var myIcon = L.icon({
-    iconUrl: 'my-icon.png',
-    iconSize: [32, 37],
-    iconAnchor: [17, 35],
-    popupAnchor: [1, -18],
-	});
-	<!-- marker icon symbol-->
-	var favicon = L.icon({
-    iconUrl: 'favicon.png',
-    iconSize: [32, 37],
-    iconAnchor: [17, 35],
-    popupAnchor: [1, -18],
-	});
-	<!-- marker icon symbol-->
-	var urlicon = L.icon({
-    iconUrl: 'green.png',
-    iconSize: [24, 40],
-    iconAnchor: [12, 40],
-    popupAnchor: [0, -39],
-	});
-	
-	<!--background map -->
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 21,
-		<!--copyroght author-->
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/streets-v11',
-		tileSize: 512,
-		zoomOffset: -1
-	}).addTo(map);
-	
-	L.control.scale({
-		metric: true,
-		imperial: false,
-	}).addTo(map);
-	
-	var myStyle = {
-		"color": "#ff7800",
-		"weight": 5,
-		"opacity": 0.65
-	};	
-	<!-- add individual markers-->
-	<!-- L.marker([48.17651365432451, 16.360024422044273]).addTo(map) -->
-		<!-- .bindPopup("Marker ID: 1").openPopup(); -->
-	<!-- L.marker([48.17642512312112, 16.362770710635175]).addTo(map) -->
-		<!-- .bindPopup("Marker ID: 2").openPopup(); -->
-		
+	<!-- if location found-->
+	function onLocationFound(e) {
+		<!-- if already postion marked remove current marker-->
+		if (theMarker != undefined) {
+				map.removeLayer(theMarker);
+        	};
+		<!-- add user position marker-->
+		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
+	}
+
+	<!-- if no location found-->
+	function onLocationError(e) {
+		alert(e.message);
+	}
 	
 	<!-- function to show meta data of geoJSON data-->
 	function onEachFeature(feature, layer) {
 		layer.bindPopup("<b>" + feature.properties.name + "</b><br>" + feature.properties.height + " m");
 	}
+	
+	// wrap map.locate in a function    
+    function locate() {
+		map.locate();
+    }	
+
+<!-- VARIABLES -->	
+	<!-- Map fittet to the screen-->
+	var map = L.map('map', { "tap": false }).fitWorld();
+	
+	<!-- marker variable to hold the user position-->
+	var theMarker = {};
 
 	<!-- GPS points in GeoJSON Format -->
 	var myGeoJSON = {"type": "FeatureCollection", "features": [
@@ -130,41 +105,79 @@
 	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.712359974, 47.551991636]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P019","height": "9,925"}},
 	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709392456, 47.552069048]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P020","height": "9,939"}}]}
 	
-	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature, pointToLayer: function(feature,latlng){ return L.marker(latlng,{icon: urlicon});}    }).addTo(map)
-
-	<!-- marker variable to hold the user position-->
-	var theMarker = {};
+	<!-- marker icon symbol-->
+	var myIcon = L.icon({
+    iconUrl: 'my-icon.png',
+    iconSize: [32, 37],
+    iconAnchor: [17, 35],
+    popupAnchor: [1, -18],
+	});
+	<!-- marker icon symbol -->
+	<!-- var favicon = L.icon({ -->
+    <!-- iconUrl: 'favicon.png', -->
+    <!-- iconSize: [32, 37], -->
+    <!-- iconAnchor: [17, 35], -->
+    <!-- popupAnchor: [1, -18], -->
+	<!-- }); -->
+	<!-- marker icon symbol-->
+	var icon_green = L.icon({
+    iconUrl: 'green.png',
+    iconSize: [24, 40],
+    iconAnchor: [12, 40],
+    popupAnchor: [0, -39],
+	});
 	
-	<!-- if location found-->
-	function onLocationFound(e) {
-		<!-- if already postion marked remove current marker-->
-		if (theMarker != undefined) {
-              		map.removeLayer(theMarker);
-        	};
-		<!-- add user position marker-->
-		theMarker = L.circleMarker(e.latlng, 20).addTo(map);
+	var myStyle = {
+		"color": "#ff7800",
+		"weight": 5,
+		"opacity": 0.65
+	};
+	
+	<!--background map -->
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 21,
+		<!--copyroght author-->
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
+	
+	<!-- scale bar-->
+	L.control.scale({
+		metric: true,
+		imperial: false,
+	}).addTo(map);
+	
+	<!-- watermark/logo -->
+	L.Control.Watermark = L.Control.extend({
+		onAdd: function(map) {
+			var img = L.DomUtil.create('img');
+			img.src = '../../docs/images/logo.png';
+			img.style.width = '200px';
+			return img;
+		},
+		onRemove: function(map) {
+			// Nothing to do here
+		}
+	});
+
+	L.control.watermark = function(opts) {
+		return new L.Control.Watermark(opts);
 	}
 
-	<!-- if no location found-->
-	function onLocationError(e) {
-		alert(e.message);
-	}
+	L.control.watermark({ position: 'bottomleft' }).addTo(map);
 
+<!-- MAIN -->
+	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature, pointToLayer: function(feature,latlng){ return L.marker(latlng,{icon: icon_green});}    }).addTo(map)
+	
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
-
-	// wrap map.locate in a function    
-    function locate() {
-		map.locate();
-    }
 	
 	getLocation()
     // call locate every 3 seconds... forever
     setInterval(locate, 3000);
-	
 </script>
-
-
-
 </body>
 </html>
