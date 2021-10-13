@@ -44,7 +44,8 @@
 	<!-- Button Click Event-->
 	function getLocation() {
 		// first initialization
-		map.locate({setView: true, maxZoom: 18, setZoom: 13});
+		map.locate({setView: true, maxZoom: 21});
+		map.setZoom(16);
 	}
 	
 	<!-- if location found-->
@@ -74,7 +75,11 @@
 
 <!-- VARIABLES -->	
 	<!-- Map fittet to the screen-->
-	var map = L.map('map', { "tap": false }).fitWorld();
+	var map = L.map('map', { 
+		"tap": false,
+		minZoom: 10,
+		maxZoom: 21,
+	}).fitWorld();
 	
 	<!-- marker variable to hold the user position-->
 	var theMarker = {};
