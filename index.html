@@ -154,7 +154,7 @@
 	L.Control.Watermark = L.Control.extend({
 		onAdd: function(map) {
 			var img = L.DomUtil.create('img');
-			img.src = '../../docs/images/logo.png';
+			img.src = "logo.png";
 			img.style.width = '200px';
 			return img;
 		},
@@ -167,7 +167,7 @@
 		return new L.Control.Watermark(opts);
 	}
 
-	L.control.watermark({ position: 'bottomleft' }).addTo(map);
+	L.control.watermark({ position: 'topright' }).addTo(map);
 
 <!-- MAIN -->
 	L.geoJSON(myGeoJSON, {onEachFeature: onEachFeature, pointToLayer: function(feature,latlng){ return L.marker(latlng,{icon: icon_green});}    }).addTo(map)
