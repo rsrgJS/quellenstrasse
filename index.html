@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
 	<!-- browser tab title-->
 	<title>Quellenstraße</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -84,42 +81,28 @@
 
 	<!-- GPS points in GeoJSON Format -->
 	var myGeoJSON = {"type": "FeatureCollection", "features": [
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.711070661, 47.551815101]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P001","height": "9,986"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710947691, 47.552189586]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P002","height": "9,993"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710849629, 47.552199706]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P003","height": "9,956"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710090113, 47.552277651]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P004","height": "9,987"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709240428, 47.552343839]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P005","height": "9,920"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709283839, 47.552333909]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P006","height": "9,900"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.708603472, 47.552366276]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P007","height": "9,883"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707922956, 47.552340302]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P008","height": "9,864"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707923161, 47.552339837]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P009","height": "9,865"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707736150, 47.552282266]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P010","height": "9,866"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707249546, 47.552313428]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P011","height": "9,897"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.706902031, 47.552247005]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P012","height": "9,874"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.706288772, 47.552056843]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P013","height": "9,893"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.705491930, 47.552224106]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P014","height": "9,903"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707301945, 47.551909900]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P015","height": "9,917"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.708335698, 47.551760038]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P016","height": "9,796"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709676336, 47.551653491]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P017","height": "9,928"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.711901875, 47.551759230]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P018","height": "9,935"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.712359974, 47.551991636]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P019","height": "9,925"}},
-	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709392456, 47.552069048]}, "id": "fef49ce4-ec51-481c-a692-e30f5b2c1290", "properties": {"name": "P020","height": "9,939"}}]}
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.711070661, 47.551815101]}, "properties": {"name": "P001","height": "9,986"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710947691, 47.552189586]}, "properties": {"name": "P002","height": "9,993"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710849629, 47.552199706]}, "properties": {"name": "P003","height": "9,956"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.710090113, 47.552277651]}, "properties": {"name": "P004","height": "9,987"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709240428, 47.552343839]}, "properties": {"name": "P005","height": "9,920"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709283839, 47.552333909]}, "properties": {"name": "P006","height": "9,900"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.708603472, 47.552366276]}, "properties": {"name": "P007","height": "9,883"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707922956, 47.552340302]}, "properties": {"name": "P008","height": "9,864"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707923161, 47.552339837]}, "properties": {"name": "P009","height": "9,865"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707736150, 47.552282266]}, "properties": {"name": "P010","height": "9,866"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707249546, 47.552313428]}, "properties": {"name": "P011","height": "9,897"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.706902031, 47.552247005]}, "properties": {"name": "P012","height": "9,874"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.706288772, 47.552056843]}, "properties": {"name": "P013","height": "9,893"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.705491930, 47.552224106]}, "properties": {"name": "P014","height": "9,903"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.707301945, 47.551909900]}, "properties": {"name": "P015","height": "9,917"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.708335698, 47.551760038]}, "properties": {"name": "P016","height": "9,796"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709676336, 47.551653491]}, "properties": {"name": "P017","height": "9,928"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.711901875, 47.551759230]}, "properties": {"name": "P018","height": "9,935"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.712359974, 47.551991636]}, "properties": {"name": "P019","height": "9,925"}},
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.709392456, 47.552069048]}, "properties": {"name": "P020","height": "9,939"}}]}
 	
-	<!-- marker icon symbol-->
-	var myIcon = L.icon({
-    iconUrl: 'my-icon.png',
-    iconSize: [32, 37],
-    iconAnchor: [17, 35],
-    popupAnchor: [1, -18],
-	});
-	<!-- marker icon symbol -->
-	<!-- var favicon = L.icon({ -->
-    <!-- iconUrl: 'favicon.png', -->
-    <!-- iconSize: [32, 37], -->
-    <!-- iconAnchor: [17, 35], -->
-    <!-- popupAnchor: [1, -18], -->
-	<!-- }); -->
-	<!-- marker icon symbol-->
+	<!-- marker icon symbol-->	
 	var icon_green = L.icon({
     iconUrl: 'green.png',
     iconSize: [24, 40],
